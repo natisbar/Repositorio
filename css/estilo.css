@@ -3,17 +3,17 @@ body{
     width: 100%;
     height: 100%;
     margin: 0;
-    background-color: aquamarine;
+    background-color: black;
 }
 .parrafo{
     width: 80%;
     height: 30%;
     margin: 0 auto;
-    background-color: #fff;
+    background-color:darkred;
 }
 #contenedor{
     width: 80%;
     height: 30%;
     margin: 0 auto;
-    background-color: bisque;
+    background-color:darkolivegreen;
 }
