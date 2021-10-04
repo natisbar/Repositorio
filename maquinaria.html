@@ -31,18 +31,18 @@
             </div>
         </nav>
 
-        <img src="image/imagen_header.png" width="50%">
+        <img src="/image/imagen_header.png" width="50%">
         <br>
         <br>
         <br>
-        <div class="row">
+        <div class="row" width="70%">
             <div class="col" align="center">
                 <label for="id" class="form-label">ID</label>
                 <input type="number" class="form-control" id="id" placeholder="0">
             </div>
             <div class="col" align="center">
                 <label for="brand" class="form-label">BRAND</label>
-                <input type="text" class="form-control" id="brand" placeholder="eso">
+                <input type="text" class="form-control" id="brand" placeholder="marca">
             </div>
             <div class="col" align="center">
                 <label for="model" class="form-label">MODEL</label>
@@ -55,6 +55,10 @@
             <div class="col" align="center">
                 <label for="name" class="form-label">NAME</label>
                 <input type="text" class="form-control" id="name" placeholder="name">
+            </div>
+            <div class="col" align="center">
+                <label for="amount" class="form-label">AMOUNT</label>
+                <input type="text" class="form-control" id="name" placeholder="amount">
             </div>
         </div>
         <br>
@@ -90,6 +94,7 @@
                 <th>model</th>
                 <th>category_id</th>
                 <th>name</th>
+                <th>amount</th>
             </tr>
         </thead>
         <tbody>
@@ -101,6 +106,7 @@
                 <td>model</td>
                 <td>category_id</td>
                 <td>name</td>
+                <td>amount</td>
             </tr>
         </tfoot>
     </table>
@@ -115,7 +121,7 @@
     <script>
         function consultar() {
             $.ajax({
-                url: "https://g93b01c51b4cf1d-db202109231132.adb.ca-toronto-1.oraclecloudapps.com/ords/admin/machine/machine",
+                url: "https://g44dabe1ff79c15-db202109272014.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/machine/machine",
                 type: "GET",
                 dataType: "json",
                 success: function (response) {
@@ -128,6 +134,7 @@
                         row.append($('<td>').text(element.model));
                         row.append($('<td>').text(element.category_id));
                         row.append($('<td>').text(element.name));
+                        row.append($('<td>').text(element.amount));
                         $('tbody').append(row);
                     });
                 }
@@ -140,7 +147,7 @@
             var category_id = $("#category_id").val();
             var name = $("#name").val();
             $.ajax({
-                url: "https://g93b01c51b4cf1d-db202109231132.adb.ca-toronto-1.oraclecloudapps.com/ords/admin/machine/machine",
+                url: "https://g44dabe1ff79c15-db202109272014.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/machine/machine",
                 type: "POST",
                 dataType: "json",
                 data: {
@@ -148,7 +155,8 @@
                     brand: brand,
                     model: model,
                     category_id: category_id,
-                    name: name
+                    name: name,
+                    amount:amount
                 },
                 statusCode: {
                     201: function () {
