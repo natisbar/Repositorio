@@ -24,26 +24,50 @@
         <a href="contacto.html"><i class="fa fa-fw fa-envelope"></i> Contacto</a>
     </div>
 
-    <div class="container" align="center">
-        <div class="main">
+    <div class="main">
+        <div class="textogood" align="center">
             <h1>
                 Machinery Rent
             </h1>
             <img src="image/imagen_header.png" width="50%"> <!--Esta es la imagen de las maquinas-->
-            <p>
-                <br>
-                <br>
-            
+        </div>      
+        <br>
+        <br> 
+
+        <div class="centerDiv" align="center">
+            <button style="margin: 10px" class="btn success fa fa-window-restore" href='javascript:void(0);' data-custom-open="modal-1"> Gestionar</button>
+            <button style="margin: 10px" class="btn info fa fa-eye" onclick="showTable()"> Ver maquinas</button>
+        </div>
+        <br>
+        <br> 
+        <table align="center" style="display: none;" id="tableMachine">
+            <thead>
+                <tr align="center">
+                    <th>id</th>
+                    <th>brand</th>
+                    <th>model</th>
+                    <th>category_id</th>
+                    <th>name</th>
+                    <th>amount</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+    </div>
+</body>
+<footer class="text-center footer-style main">
+    <div class="container" >
+        <div class="row">
+            <div class="col-md-4 footer-col" style="width: 100%;" >
+                <h4>Universidad Sergio Arboleda - MisionTIC 2022</h4>
+                <p>©Copyright 2021 Todos los derechos reservados.</p>
+            </div>
         </div>
     </div>
-        <footer> <!--Esta es la parte inferior donde aparecen los creditos-->
-            <p>
-                ©Copyright 2021 Todos los derechos reservados.
-                <br>
-                Universidad Sergio Arboleda - MisionTIC 2022
-            </p>
-        </footer>
-   
-</body>
+</footer>
 
 </html>
