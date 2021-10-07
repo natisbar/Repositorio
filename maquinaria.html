@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -11,80 +11,78 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="css/estilo.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
+
+    <div class="sidebar">
+        <a href="index.html"><i class="fa fa-fw fa-home"></i> Inicio</a>
+        <a href="cliente.html"><i class="fa fa-fw fa-user"></i> Cliente</a>
+        <a href="maquinaria.html"><i class="fa fa-fw fa-truck"></i> Maquinaria</a>
+        <a href="contacto.html"><i class="fa fa-fw fa-envelope"></i> Contacto</a>
+    </div>
+
     <div class="container" align="center">
-        <header>            
+        <div class="main">       
             <h1>
                 Machinery Rent
             </h1>
-        </header>
 
-        <nav>
-            <div class="btn-group">
-                <a href="index.html" class="btn btn-warning">Inicio</a>
-                <a href="cliente.html" class="btn btn-warning">Cliente</a>
-                <a href="maquinaria.html" class="btn btn-warning active" aria-current="page">Maquinaria</a>
-                <a href="contacto.html" class="btn btn-warning">Contacto</a>
+            <img src="/image/imagen_header.png" width="50%">
+            <br>
+            <br>
+            <br>
+            <div class="row" width="70%">
+                <div class="col" align="center">
+                    <label for="id" class="form-label">ID</label>
+                    <input type="number" class="form-control" id="id" placeholder="0">
+                </div>
+                <div class="col" align="center">
+                    <label for="brand" class="form-label">BRAND</label>
+                    <input type="text" class="form-control" id="brand" placeholder="marca">
+                </div>
+                <div class="col" align="center">
+                    <label for="model" class="form-label">MODEL</label>
+                    <input type="number" class="form-control" id="model" placeholder="0">
+                </div>
+                <div class="col" align="center">
+                    <label for="category_id" class="form-label">ID CATEGORY</label>
+                    <input type="number" class="form-control" id="category_id" placeholder="0">
+                </div>
+                <div class="col" align="center">
+                    <label for="name" class="form-label">NAME</label>
+                    <input type="text" class="form-control" id="name" placeholder="name">
+                </div>
+                <div class="col" align="center">
+                    <label for="amount" class="form-label">AMOUNT</label>
+                    <input type="text" class="form-control" id="name" placeholder="amount">
+                </div>
             </div>
-        </nav>
-
-        <img src="/image/imagen_header.png" width="50%">
-        <br>
-        <br>
-        <br>
-        <div class="row" width="70%">
-            <div class="col" align="center">
-                <label for="id" class="form-label">ID</label>
-                <input type="number" class="form-control" id="id" placeholder="0">
+            <br>
+            <br>
+            <div class="row">
+                <div class="col" align="center">
+                </div>
+                <div class="col" align="center">
+                    <button type="button" class="btn btn-success" onclick="crear()"> Crear</button>
+                </div>
+                <div class="col" align="center">
+                </div>
+                <div class="col" align="center">
+                    <button type="button" class="btn btn-warning" onclick="modificar()">Modificar</button>
+                </div>
+                <div class="col" align="center">
+                </div>
+                <div class="col" align="center">
+                    <button type="button" class="btn btn-danger" onclick="borrar()">Borrar</button>
+                </div>
+                <div class="col" align="center">
+                </div>
             </div>
-            <div class="col" align="center">
-                <label for="brand" class="form-label">BRAND</label>
-                <input type="text" class="form-control" id="brand" placeholder="marca">
-            </div>
-            <div class="col" align="center">
-                <label for="model" class="form-label">MODEL</label>
-                <input type="number" class="form-control" id="model" placeholder="0">
-            </div>
-            <div class="col" align="center">
-                <label for="category_id" class="form-label">ID CATEGORY</label>
-                <input type="number" class="form-control" id="category_id" placeholder="0">
-            </div>
-            <div class="col" align="center">
-                <label for="name" class="form-label">NAME</label>
-                <input type="text" class="form-control" id="name" placeholder="name">
-            </div>
-            <div class="col" align="center">
-                <label for="amount" class="form-label">AMOUNT</label>
-                <input type="text" class="form-control" id="name" placeholder="amount">
-            </div>
+            <br>
+            <br>
         </div>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col" align="center">
-            </div>
-            <div class="col" align="center">
-                <button type="button" class="btn btn-success" onclick="crear()"> Crear</button>
-            </div>
-            <div class="col" align="center">
-            </div>
-            <div class="col" align="center">
-                <button type="button" class="btn btn-warning" onclick="modificar()">Modificar</button>
-            </div>
-            <div class="col" align="center">
-            </div>
-            <div class="col" align="center">
-                <button type="button" class="btn btn-danger" onclick="borrar()">Borrar</button>
-            </div>
-            <div class="col" align="center">
-            </div>
-        </div>
-        <br>
-        <br>
-
     </div>
     <table class="table table-bordered" align="center">
         <thead>
