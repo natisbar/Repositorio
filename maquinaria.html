@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/estilo.css">
     <link rel="stylesheet" href="css/styleModalAcc.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -48,7 +50,7 @@
                         <th>model</th>
                         <th>category_id</th>
                         <th>name</th>
-                        <th>amount</th>
+                        <!-- <th>amount</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -71,7 +73,7 @@
             </header>
             <div class="modal-content-content" id="modal-1-content">
                 <div class="modal__content">
-                    <div class="row" width="70%">
+                    <div class="row" width="70%" >
                         <div class="col" align="center">
                             <label for="id" class="form-label">ID</label>
                             <input type="number" class="form-control" id="id" placeholder="0">
@@ -84,17 +86,17 @@
                             <label for="model" class="form-label">MODEL</label>
                             <input type="number" class="form-control" id="model" placeholder="0">
                         </div>
+                    </div>
+                    <div class="row" width="70%" style="margin:10px;">
                         <div class="col" align="center">
-                            <label for="category_id" class="form-label">ID CATEGORY</label>
+                            
+                            <label for="category_id" class="form-label"># categoría</label>
                             <input type="number" class="form-control" id="category_id" placeholder="0">
                         </div>
                         <div class="col" align="center">
+                            
                             <label for="name" class="form-label">NAME</label>
                             <input type="text" class="form-control" id="name" placeholder="name">
-                        </div>
-                        <div class="col" align="center">
-                            <label for="amount" class="form-label">AMOUNT</label>
-                            <input type="text" class="form-control" id="name" placeholder="amount">
                         </div>
                     </div>
                 </div>
@@ -116,7 +118,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/micromodal/dist/micromodal.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts/querys.js"></script>
+    <script src="scripts/querysM.js"></script>
     
     <script>
         try {
