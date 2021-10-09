@@ -16,7 +16,7 @@
 
 <body>
     <div class="container" align="center">
-        <header>            
+        <header>
             <h1>
                 Machinery Rent
             </h1>
@@ -100,7 +100,7 @@
         <tbody>
         </tbody>
         <tfoot>
-            <tr >
+            <tr>
                 <td>id</td>
                 <td>brand</td>
                 <td>model</td>
@@ -140,7 +140,7 @@
                 }
             });
         }
-        
+
         function crear() {
             var id = $("#id").val();
             var brand = $("#brand").val();
@@ -157,7 +157,7 @@
                     model: model,
                     category_id: category_id,
                     name: name,
-                    amount:amount
+                    amount: amount
                 },
                 statusCode: {
                     201: function () {
@@ -169,10 +169,32 @@
                 },
             });
         }
+        function Borrar() {
+            var id = $("#id").val();
+            var conf = confirm("Seguro que desea eliminar el registro No: " + id);
+            if (conf == true) {
+                var data = {
+                    id: id
+                };
+                $.ajax({
+                    url: "https://g44dabe1ff79c15-db202109272014.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/machine/machine",
+                    type: "DELETE",
+                    dataType: "json",
+                    data: JSON.stringify(data),
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    statusCode: {
+                        201: function () {
+                            consultar();
+                        },
+                    },
+                });
+            }
+        }
         $(document).ready(function () {
             consultar();
         });
-
     </script>
 </body>
 
