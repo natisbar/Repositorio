@@ -17,9 +17,6 @@ function consultar() {
         }
     });
 }
-
-
-
 function crear() {
     let id = $("#id").val();
     let messagetext = $("#messagetext").val();
@@ -34,6 +31,7 @@ function crear() {
         statusCode: {
             201: function () {
                 consultar();
+                Limpiar();
             },
             200: function () {
                 console.log("-1-1-1-1 WE GOT 200!");
@@ -42,54 +40,60 @@ function crear() {
     });
     consultar();
 }
+function modificar(id) {
+    var id = $("#id").val();
+    var messagetext = $("#messagetext").val();
+    var data = {
+        id: id,
+        messagetext: messagetext
+    };
+    $.ajax({
+        url: urlOracle,
+        type: "PUT",
+        dataType: "json",
+        data: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        success: function (response) {
 
-// function modificar() {
-//     let id = $("#id").val();
-//     let brand = $("#brand").val();
-//     let model = $("#model").val();
-//     let category_id = $("#category_id").val();
-//     let name = $("#name").val();
-//     $.ajax({
-//         url: urlOracle,
-//         type: "PUT",
-//         dataType: "application/json",
-//         data: {
-//             id: id,
-//             brand: brand,
-//             model: model,
-//             category_id: category_id,
-//             name: name
-//         },
-//         statusCode: {
-//             201: function () {
-//                 consultar();
-//             },
-//             200: function () {
-//                 console.log("-1-1-1-1 WE GOT 200!");
-//             }
-//         }
-//     });
-//     // consultar();
-// }
-
-// function borrar() {
-//     let id = $("#id").val();
-//     $.ajax({
-//         url: urlOracle,
-//         type: "POST",
-//         dataType: "application/json",
-//         data: {
-//             "_method":"delete",
-//             id: id
-            
-//         },
-//     }).done(function () {
-//         console.log('SUCCESS');
-//     }).fail(function (msg) {
-//         console.log('FAIL');
-//     });
-// }
-
+        },
+        statusCode: {
+            201: function () {
+                Limpiar();
+                consultar();
+            },
+        }
+    });
+}
+function borrar(id) {
+    id = $("#id").val();
+    var conf = confirm("Seguro que desea eliminar el resgistro No." + id);
+    if (conf == true) {
+        var data = {
+            id: id
+        }
+        $.ajax({
+            url: urlOracle,
+            type: "DELETE",
+            dataType: "json",
+            data: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            },
+            statusCode: {
+                204: function () {
+                    consultar();
+                    Limpiar();
+                }
+            },
+        });
+    }
+}
+function Limpiar(id) {
+    $("#id").val("");
+    $("#messagetext").val("");
+}
 $(document).ready(function () {
     consultar();
 });

@@ -20,9 +20,6 @@ function consultar() {
         }
     });
 }
-
-
-
 function crear() {
     let id = $("#id").val();
     let brand = $("#brand").val();
@@ -43,6 +40,7 @@ function crear() {
         statusCode: {
             201: function () {
                 consultar();
+                Limpiar();
             },
             200: function () {
                 console.log("-1-1-1-1 WE GOT 200!");
@@ -51,54 +49,70 @@ function crear() {
     });
     consultar();
 }
-
-function modificar() {
-    let id = $("#id").val();
-    let brand = $("#brand").val();
-    let model = $("#model").val();
-    let category_id = $("#category_id").val();
-    let name = $("#name").val();
+function modificar(id) {
+    var id = $("#id").val();
+    var brand = $("#brand").val();
+    var model = $("#model").val();
+    var category_id = $("#category_id").val();
+    var name = $("#name").val();
+    var data = {
+        id: id,
+        brand: brand,
+        model: model,
+        category_id: category_id,
+        name: name
+    };
     $.ajax({
         url: urlOracle,
         type: "PUT",
-        dataType: "application/json",
-        data: {
-            id: id,
-            brand: brand,
-            model: model,
-            category_id: category_id,
-            name: name
+        dataType: "json",
+        data: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        success: function (response) {
+
         },
         statusCode: {
             201: function () {
+                Limpiar();
                 consultar();
             },
-            200: function () {
-                console.log("-1-1-1-1 WE GOT 200!");
-            }
         }
     });
-    // consultar();
 }
-
-function borrar() {
-    let id = $("#id").val();
-    $.ajax({
-        url: urlOracle,
-        type: "POST",
-        dataType: "application/json",
-        data: {
-            "_method":"delete",
+function borrar(id) {
+    id = $("#id").val();
+    var conf = confirm("Seguro que desea eliminar el resgistro No." + id);
+    if (conf == true) {
+        var data = {
             id: id
-            
-        },
-    }).done(function () {
-        console.log('SUCCESS');
-    }).fail(function (msg) {
-        console.log('FAIL');
-    });
+        }
+        $.ajax({
+            url: urlOracle,
+            type: "DELETE",
+            dataType: "json",
+            data: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            },
+            statusCode: {
+                204: function () {
+                    consultar();
+                    Limpiar();
+                }
+            },
+        });
+    }
 }
+function Limpiar(id) {
+    $("#id").val("");
+    $("#brand").val("");
+    $("#model").val("");
+    $("#category_id").val("");
+    $("#name").val("");
 
+}
 $(document).ready(function () {
     consultar();
 });
