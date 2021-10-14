@@ -37,3 +37,126 @@ h1{
 h7{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.sidebar {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 16px;
+  }
+  
+  .sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+  }
+  
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+  
+  .main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    padding: 0px 10px;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 80%;
+    border: 1px solid #ddd;
+    margin: auto;
+    padding-top: 10%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even){background-color: #f2f2f2}
+
+  .btn {
+    border-radius: 10px;
+    color: white; /* Add a text color */
+    padding: 14px 28px; /* Add some padding */
+    cursor: pointer; /* Add a pointer cursor on mouse-over */
+  }
+  
+
+  .success {background-color: #04AA6D;} /* Green */
+  .success:hover {background-color: #46a049;}
+  
+  .info {background-color: #2196F3;} /* Blue */
+  .info:hover {background: #0b7dda;}
+  
+  .warning {background-color: #ff9800;} /* Orange */
+  .warning:hover {background: #e68a00;}
+  
+  .danger {background-color: #f44336;} /* Red */
+  .danger:hover {background: #da190b;}
+  
+  .default {background-color: #e7e7e7; color: black;} /* Gray */
+  .default:hover {background: #ddd;}
+  
+
+  .textogood {
+    /* top: 5%; */
+    left: 10%;
+    width: 80%;
+    margin: auto;
+    padding-top: 10px;
+    /* padding: 5%; */
+    }
+  
+    .product {
+        padding: 5%;
+        width: 100%
+    }
+
+    .product .content {
+        /* background-color: white; */
+        padding: 10px;
+        box-shadow: 0 0 5px #947c7c;
+    }
+
+    .column {
+        float: left;
+        background-color: white;
+        margin: auto;
+    }
+    
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* footer */
+
+.footer-style {
+    padding-top: 50px;
+    background-color: #2C3E50;
+}
+footer {
+  color: white;
+  margin: 20px 0 0 0;
+}
+footer .footer-above {
+  padding-top: 50px;
+  background-color: #2C3E50;
+}
+footer .footer-col {
+  margin-bottom: 30px;
+}
+footer .footer-below {
+  padding: 25px 0;
+  background-color: #233140;
+}
