@@ -24,6 +24,7 @@
         <a href="cliente.html"><i class="fa fa-fw fa-user"></i> Cliente</a>
         <a href="maquinaria.html"><i class="fa fa-fw fa-truck"></i> Maquinaria</a>
         <a href="contacto.html"><i class="fa fa-fw fa-envelope"></i> Contacto</a>
+        <a href="categoria.html"><i class="fa fa-fw fa-envelope"></i> Categoría</a>
     </div>
 
         <div class="main">
@@ -47,12 +48,13 @@
                     <tr align="center">
                         <th>id</th>
                         <th>name</th>
-                        <th>email</th>
                         <th>age</th>
+                        <th>email</th>
+                        <th>password</th>
                         <!-- <th>amount</th> -->
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="cuerpoTabla">
                 </tbody>
             </table>
             <br>
@@ -81,6 +83,10 @@
                             <label for="name" class="form-label">NAME</label>
                             <input type="text" class="form-control" id="name" placeholder="nombre">
                         </div>
+                        <div class="col" align="center">
+                            <label for="age" class="form-label">AGE</label>
+                            <input type="number" class="form-control" id="age" placeholder="0">
+                        </div>
                     </div>
                     <div class="row" width="70%" style="margin:10px;">
                         <div class="col" align="center">
@@ -88,8 +94,8 @@
                             <input type="email" class="form-control" id="email" placeholder="example@mintic.com">
                         </div>
                         <div class="col" align="center">
-                            <label for="age" class="form-label">AGE</label>
-                            <input type="number" class="form-control" id="age" placeholder="0">
+                            <label for="password" class="form-label">PASSWORD</label>
+                            <input type="password" class="form-control" id="password" placeholder="****">
                         </div>
                     </div>
                 </div>
@@ -98,8 +104,7 @@
                 <!-- <div class="centerDiv" style="display: inline-block;
                 width: 0%;margin: 0;"> -->
                     <button class="modal__btn" style="background-color: #04AA6D" onclick="crear()"> Crear</button>
-                    <button class="modal__btn" style="background-color: #ff9800"onclick="modificar()">Modificar</button>
-                    <button class="modal__btn" style="background-color: #f44336" onclick="borrar()">Borrar</button>
+                    <button class="modal__btn" style="background-color: #ff9800"onclick="actualizar()">Modificar</button>
                     <button class="modal__btn" data-custom-close="modal-1"
                         aria-label="Close this dialog window" id="modalClose">Close</button>
                     <!-- </div> -->

@@ -1,5 +1,5 @@
 // var urlServer = "http://"+window.location.host+"/api/Machine/all";
-var path = "/api/Message/";
+var path = "/api/Client/";
 var locationHost = window.location.host;
 var port = ":8080"
 var ssave = "save";
@@ -22,9 +22,10 @@ function consultar() {
                 $('#cuerpoTabla').append(
                     '<tr>'+
                         '<td>'+value.id+'</td>'+
-                        '<td>'+value.messageText+'</td>'+
+                        '<td>'+value.name+'</td>'+
+                        '<td>'+value.description+'</td>'+
                         '<td>'+
-                            '<button type="button" class="btn success" onclick=editar('+value.id+',"'+value.messageText+'")>Editar</button>'+
+                            '<button type="button" class="btn success" onclick=editar('+value.id+',"'+value.name+'",'+value.description+'")>Editar</button>'+
                             '<button type="button" class="btn danger" onclick=eliminar('+value.id+')>Eliminar</button>'+
                         '</td>'+
                     '</tr>'
@@ -35,13 +36,15 @@ function consultar() {
 }
 
 function crear(){
-    if($("#mensaje").val()==""){
-        alert("Debe definir el mensaje");
+    if($("#name").val()=="" || $("#age").val()=="" || $("#email").val()=="" || $("#password").val()==""){
+        alert("Todos los campos son obligatorios");
     }
     else{
-        let messageText = $("#mensaje").val();
+        let name = $("#name").val();
+        let description = $("#description").val();
         var data = {
-            messageText:messageText,
+            name:name,
+            description:description
         };
         $.ajax({
             url: "http://"+locationHost+port+path+ssave,
@@ -60,21 +63,23 @@ function crear(){
     } 
 }
 
-function editar(id,messageText){
+function editar(id,name,description){
     document.getElementById("openEdit").click();
         $("#id").val(""+id+"");
         document.getElementById("id").disabled = true;
-        $("#mensaje").val(""+messageText+"");
+        $("#name").val(""+name+"");
+        $("#description").val(""+description+"");
 }
 
 function actualizar(id) {
-    if($("#mensaje").val()==""){
+    if($("#name").val()=="" || $("#description").val()==""){
         alert("Todos los campos son obligatorios");
     }
     else{
         let data = {
             id: $("#id").val(),
-            messageText: $("#mensaje").val(),
+            name: $("#name").val(),
+            description:$("#description").val()
         }
 
         $.ajax({
@@ -121,7 +126,8 @@ function eliminar(id) {
 }
 
 function limpiar() {
-    $("#mensaje").val("");
+    $("#name").val("");
+    $("#description").val("");
 }
 
 $(document).ready(function () {

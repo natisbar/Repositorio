@@ -38,8 +38,8 @@
             <br> 
 
             <div class="centerDiv">
-                <button style="margin: 10px" class="btn success fa fa-window-restore" href='javascript:void(0);' data-custom-open="modal-1" id="openEdit"> Crear</button>
-                <button style="margin: 10px" class="btn info fa fa-eye" onclick="showTable()"> Ver maquinas</button>
+                <button style="margin: 10px" class="btn success fa fa-window-restore" href='javascript:void(0);' data-custom-open="modal-1"> Gestionar</button>
+                <button style="margin: 10px" class="btn info fa fa-eye" onclick="showTable()"> Ver clientes</button>
             </div>
             <br>
             <br> 
@@ -48,11 +48,8 @@
                     <tr align="center">
                         <th>id</th>
                         <th>name</th>
-                        <th>brand</th>
-                        <th>year</th>
-                        <th>category</th>
                         <th>description</th>
-                        <th>Acciones</th>
+                        <!-- <th>amount</th> -->
                     </tr>
                 </thead>
                 <tbody id="cuerpoTabla">
@@ -85,23 +82,8 @@
                             <input type="text" class="form-control" id="name" placeholder="nombre">
                         </div>
                         <div class="col" align="center">
-                            <label for="brand" class="form-label">BRAND</label>
-                            <input type="text" class="form-control" id="brand" placeholder="marca">
-                        </div>
-                        <div class="col" align="center">
-                            <label for="year" class="form-label">YEAR</label>
-                            <input type="number" class="form-control" id="year" placeholder="2012">
-                        </div>
-                    </div>
-                    <div class="row" width="70%" style="margin:10px;">
-                        <div class="col" align="center">
-                            <label for="category" class="form-label">CATEGORY</label>
-                            <select class="form-control" id="category" placeholder="0">
-                            </select>
-                        </div>
-                        <div class="col" align="center">
                             <label for="description" class="form-label">DESCRIPTION</label>
-                            <input type="text" class="form-control" id="description" placeholder="descripcion">
+                            <input type="number" class="form-control" id="description" placeholder="0">
                         </div>
                     </div>
                 </div>
@@ -110,7 +92,7 @@
                 <!-- <div class="centerDiv" style="display: inline-block;
                 width: 0%;margin: 0;"> -->
                     <button class="modal__btn" style="background-color: #04AA6D" onclick="crear()"> Crear</button>
-                    <button class="modal__btn" style="background-color: #ff9800" onclick="actualizar()"> Actualizar</button>
+                    <button class="modal__btn" style="background-color: #ff9800"onclick="actualizar()">Modificar</button>
                     <button class="modal__btn" data-custom-close="modal-1"
                         aria-label="Close this dialog window" id="modalClose">Close</button>
                     <!-- </div> -->
@@ -122,7 +104,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/micromodal/dist/micromodal.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts/querysM.js"></script>
+    <script src="scripts/querysC.js"></script>
     
     <script>
         try {

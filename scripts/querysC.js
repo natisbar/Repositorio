@@ -1,90 +1,125 @@
-var urlOracle = "https://g90aed1ddc7c3bb-db202109232047.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/client/client";
+// var urlServer = "http://"+window.location.host+"/api/Machine/all";
+var path = "/api/Client/";
+var locationHost = window.location.host;
+var port = ":8080"
+var ssave = "save";
+var sshow = "all";
+var supdate = "update";
+var sdelete = "";
+// var urlServerCategory = "http://"+window.location.host+port+"/api/Category/all";
+// var urlServer = "http://129.151.112.3:8080/api/Machine/all";
+// var urlServerCategory = "http://129.151.112.3:8080/api/Category/all";
 
 function consultar() {
     $.ajax({
-        url: urlOracle,
+        url: "http://"+locationHost+port+path+sshow,
         type: "GET",
         dataType: "json",
         success: function (response) {
             $('tbody').empty();
             console.log(response);
-            response.items.forEach(element => {
-                let row = $('<tr>');
-                row.append($('<td>').text(element.id));
-                row.append($('<td>').text(element.name));
-                row.append($('<td>').text(element.email));
-                row.append($('<td>').text(element.age));
-                $('tbody').append(row);
+            $.each(response, function(index, value){
+                $('#cuerpoTabla').append(
+                    '<tr>'+
+                        '<td>'+value.id+'</td>'+
+                        '<td>'+value.name+'</td>'+
+                        '<td>'+value.age+'</td>'+
+                        '<td>'+value.email+'</td>'+
+                        '<td>'+value.password+'</td>'+
+                        '<td>'+
+                            '<button type="button" class="btn success" onclick=editar('+value.id+',"'+value.name+'",'+value.age+',"'+value.email+'","'+value.password+'")>Editar</button>'+
+                            '<button type="button" class="btn danger" onclick=eliminar('+value.id+')>Eliminar</button>'+
+                        '</td>'+
+                    '</tr>'
+                );
             });
         }
     });
 }
-function crear() {
-    let id = $("#id").val();
-    let name = $("#name").val();
-    let email = $("#email").val();
-    let age = $("#age").val();
-    $.ajax({
-        url: urlOracle,
-        type: "POST",
-        dataType: "json",
-        data: {
-            id: id,
-            name: name,
-            email: email,
-            age: age,
-        },
-        statusCode: {
-            201: function () {
-                consultar();
-                Limpiar();
-            },
-            200: function () {
-                console.log("-1-1-1-1 WE GOT 200!");
-            }
-        }
-    });
-    consultar();
-}
-function modificar(id) {
-    var id = $("#id").val();
-    var name = $("#name").val();
-    var email = $("#email").val();
-    var age = $("#age").val();
-    var data = {
-        id: id,
-        name: name,
-        email: email,
-        age: age,
-    };
-    $.ajax({
-        url: urlOracle,
-        type: "PUT",
-        dataType: "json",
-        data: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json"
-        },
-        success: function (response) {
 
-        },
-        statusCode: {
-            201: function () {
-                Limpiar();
+function crear(){
+    if($("#name").val()=="" || $("#age").val()=="" || $("#email").val()=="" || $("#password").val()==""){
+        alert("Todos los campos son obligatorios");
+    }
+    else{
+        let name = $("#name").val();
+        let age = $("#age").val();
+        let email = $("#email").val();
+        let password = $("#password").val();
+        var data = {
+            name:name,
+            age:age,
+            email:email,
+            password:password
+        };
+        $.ajax({
+            url: "http://"+locationHost+port+path+ssave,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            success: function (response) {
+                limpiar();
                 consultar();
             },
-        }
-    });
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("No se pudo crear el elemento")
+            }
+        });
+    } 
 }
-function borrar(id) {
-    id = $("#id").val();
+
+function editar(id,name,age,email,password){
+    document.getElementById("openEdit").click();
+        $("#id").val(""+id+"");
+        document.getElementById("id").disabled = true;
+        $("#name").val(""+name+"");
+        $("#age").val(""+age+"");
+        $("#email").val(""+email+"");
+        $("#password").val(""+password+"");
+}
+
+function actualizar(id) {
+    if($("#name").val()=="" || $("#age").val()=="" || $("#email").val()=="" || $("#password").val()==""){
+        alert("Todos los campos son obligatorios");
+    }
+    else{
+        let data = {
+            id: $("#id").val(),
+            name: $("#name").val(),
+            age: $("#age").val(),
+            email: $("#email").val(),
+            password:$("#password").val()
+        }
+
+        $.ajax({
+            url: "http://"+locationHost+port+path+supdate,
+            type: "PUT",
+            dataType: "json",
+            data: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            },
+            success: function (response) {
+                limpiar();
+                consultar();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("No se Actualizo Correctamente!")
+            }
+        });
+    }
+}
+
+
+function eliminar(id) {
     var conf = confirm("Seguro que desea eliminar el resgistro No." + id);
     if (conf == true) {
         var data = {
             id: id
         }
         $.ajax({
-            url: urlOracle,
+            url: "http://"+locationHost+port+path+sdelete+id,
             type: "DELETE",
             dataType: "json",
             data: JSON.stringify(data),
@@ -94,18 +129,19 @@ function borrar(id) {
             statusCode: {
                 204: function () {
                     consultar();
-                    Limpiar();
                 }
             },
         });
     }
 }
-function Limpiar(id) {
-    $("#id").val("");
+
+function limpiar() {
     $("#name").val("");
-    $("#email").val("");
     $("#age").val("");
+    $("#email").val("");
+    $("#password").val("");
 }
+
 $(document).ready(function () {
     consultar();
 });

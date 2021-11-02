@@ -80,20 +80,18 @@ function crear(){
             dataType: "json",
             data: JSON.stringify(data),
             contentType: 'application/json',
-            statusCode: {
-                201: function(data) {
-                    limpiar();
-                    consultar();
-                },
-                415: function(data){
-                    alert("Error en los datos");
-                }
-            } 
+            success: function (response) {
+                limpiar();
+                consultar();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("No se pudo crear el elemento")
+            }
         });
     } 
 }
 
-function editar(id,name,brand,year,category,description){
+function editar(id,name,brand,year,category){
     document.getElementById("openEdit").click();
         $("#id").val(""+id+"");
         document.getElementById("id").disabled = true;
@@ -101,7 +99,7 @@ function editar(id,name,brand,year,category,description){
         $("#brand").val(""+brand+"");
         $("#year").val(""+year+"");
         $("#category").val(""+category+"");
-        $("#description").val(""+description+"");
+        // $("#description").val(""+description+"");
 }
 
 function actualizar(id) {
