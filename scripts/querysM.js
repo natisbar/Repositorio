@@ -2,6 +2,7 @@
 var urlServerCategory = "http://"+window.location.host+"/api/Category/all";
 var path = "/api/Machine/";
 var locationHost = window.location.host;
+var port = ":8080"
 var ssave = "save";
 var sshow = "all";
 var supdate = "update";
@@ -11,7 +12,7 @@ var sdelete = "";
 
 function consultar() {
     $.ajax({
-        url: "http://"+locationHost+path+sshow,
+        url: "http://"+locationHost+port+path+sshow,
         type: "GET",
         dataType: "json",
         success: function (response) {
@@ -74,7 +75,7 @@ function crear(){
             }
         };
         $.ajax({
-            url: "http://"+locationHost+path+ssave,
+            url: "http://"+locationHost+port+path+ssave,
             type: "POST",
             dataType: "json",
             data: JSON.stringify(data),
@@ -120,7 +121,7 @@ function actualizar(id) {
         }
 
         $.ajax({
-            url: "http://"+locationHost+path+supdate,
+            url: "http://"+locationHost+port+path+supdate,
             type: "PUT",
             dataType: "json",
             data: JSON.stringify(data),
@@ -146,7 +147,7 @@ function eliminar(id) {
             id: id
         }
         $.ajax({
-            url: "http://"+locationHost+path+sdelete+id,
+            url: "http://"+locationHost+port+path+sdelete+id,
             type: "DELETE",
             dataType: "json",
             data: JSON.stringify(data),
