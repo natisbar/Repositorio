@@ -1,5 +1,5 @@
 // var urlServer = "http://"+window.location.host+"/api/Machine/all";
-var urlServerCategory = "http://"+window.location.host+"/api/Category/all";
+var urlServerCategory = "http://"+window.location.host+port+"/api/Category/all";
 var path = "/api/Machine/";
 var locationHost = window.location.host;
 var port = ":8080"
