@@ -1,6 +1,6 @@
 // var urlServer = "http://"+window.location.host+"/api/Machine/all";
 var path = "/api/Message/";
-var locationHost = window.location.host;
+var locationHost = "129.151.112.3";
 var port = ":8080"
 var ssave = "save";
 var sshow = "all";
@@ -19,13 +19,14 @@ function consultar() {
             $('tbody').empty();
             console.log(response);
             $.each(response, function(index, value){
+                var msn = value.messageText;
                 $('#cuerpoTabla').append(
                     '<tr>'+
-                        '<td>'+value.id+'</td>'+
+                        '<td>'+value.idMessage+'</td>'+
                         '<td>'+value.messageText+'</td>'+
                         '<td>'+
-                            '<button type="button" class="btn success" onclick=editar('+value.id+',"'+value.messageText+'")>Editar</button>'+
-                            '<button type="button" class="btn danger" onclick=eliminar('+value.id+')>Eliminar</button>'+
+                            '<button type="button" class="btn success" onclick=editar('+value.idMessage+')>Editar</button>'+
+                            '<button type="button" class="btn danger" onclick=eliminar('+value.idMessage+')>Eliminar</button>'+
                         '</td>'+
                     '</tr>'
                 );
@@ -35,11 +36,11 @@ function consultar() {
 }
 
 function crear(){
-    if($("#mensaje").val()==""){
+    if($("#messageText").val()==""){
         alert("Debe definir el mensaje");
     }
     else{
-        let messageText = $("#mensaje").val();
+        let messageText = $("#messageText").val();
         var data = {
             messageText:messageText,
         };
@@ -60,21 +61,21 @@ function crear(){
     } 
 }
 
-function editar(id,messageText){
+function editar(id){
     document.getElementById("openEdit").click();
         $("#id").val(""+id+"");
         document.getElementById("id").disabled = true;
-        $("#mensaje").val(""+messageText+"");
+        // $("#messageText").val(""+messageText+"");
 }
 
 function actualizar(id) {
-    if($("#mensaje").val()==""){
+    if($("#messageText").val()==""){
         alert("Todos los campos son obligatorios");
     }
     else{
         let data = {
-            id: $("#id").val(),
-            messageText: $("#mensaje").val(),
+            idMessage: $("#id").val(),
+            messageText: $("#messageText").val(),
         }
 
         $.ajax({
@@ -101,16 +102,16 @@ function eliminar(id) {
     var conf = confirm("Seguro que desea eliminar el resgistro No." + id);
     if (conf == true) {
         var data = {
-            id: id
+            idMessage: id
         }
         $.ajax({
             url: "http://"+locationHost+port+path+sdelete+id,
             type: "DELETE",
             dataType: "json",
             data: JSON.stringify(data),
-            headers: {
-                "Content-Type": "application/json"
-            },
+            // headers: {
+            //     "Content-Type": "application/json"
+            // },
             statusCode: {
                 204: function () {
                     consultar();
@@ -121,7 +122,7 @@ function eliminar(id) {
 }
 
 function limpiar() {
-    $("#mensaje").val("");
+    $("#messageText").val("");
 }
 
 $(document).ready(function () {

@@ -1,6 +1,6 @@
 // var urlServer = "http://"+window.location.host+"/api/Machine/all";
 var path = "/api/Client/";
-var locationHost = window.location.host;
+var locationHost = "129.151.112.3";
 var port = ":8080"
 var ssave = "save";
 var sshow = "all";
@@ -21,14 +21,14 @@ function consultar() {
             $.each(response, function(index, value){
                 $('#cuerpoTabla').append(
                     '<tr>'+
-                        '<td>'+value.id+'</td>'+
+                        '<td>'+value.idClient+'</td>'+
                         '<td>'+value.name+'</td>'+
                         '<td>'+value.age+'</td>'+
                         '<td>'+value.email+'</td>'+
                         '<td>'+value.password+'</td>'+
                         '<td>'+
-                            '<button type="button" class="btn success" onclick=editar('+value.id+',"'+value.name+'",'+value.age+',"'+value.email+'","'+value.password+'")>Editar</button>'+
-                            '<button type="button" class="btn danger" onclick=eliminar('+value.id+')>Eliminar</button>'+
+                            '<button type="button" class="btn success" onclick=editar('+value.idClient+',"'+value.name+'",'+value.age+',"'+value.email+'","'+value.password+'")>Editar</button>'+
+                            '<button type="button" class="btn danger" onclick=eliminar('+value.idClient+')>Eliminar</button>'+
                         '</td>'+
                     '</tr>'
                 );
@@ -85,7 +85,7 @@ function actualizar(id) {
     }
     else{
         let data = {
-            id: $("#id").val(),
+            idClient: $("#id").val(),
             name: $("#name").val(),
             age: $("#age").val(),
             email: $("#email").val(),
@@ -116,7 +116,7 @@ function eliminar(id) {
     var conf = confirm("Seguro que desea eliminar el resgistro No." + id);
     if (conf == true) {
         var data = {
-            id: id
+            idClient: id
         }
         $.ajax({
             url: "http://"+locationHost+port+path+sdelete+id,

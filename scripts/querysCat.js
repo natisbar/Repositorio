@@ -1,6 +1,6 @@
 // var urlServer = "http://"+window.location.host+"/api/Machine/all";
-var path = "/api/Client/";
-var locationHost = window.location.host;
+var path = "/api/Category/";
+var locationHost = "129.151.112.3";
 var port = ":8080"
 var ssave = "save";
 var sshow = "all";
@@ -25,7 +25,7 @@ function consultar() {
                         '<td>'+value.name+'</td>'+
                         '<td>'+value.description+'</td>'+
                         '<td>'+
-                            '<button type="button" class="btn success" onclick=editar('+value.id+',"'+value.name+'",'+value.description+'")>Editar</button>'+
+                            '<button type="button" class="btn success" onclick=editar('+value.id+',"'+value.name+'")>Editar</button>'+
                             '<button type="button" class="btn danger" onclick=eliminar('+value.id+')>Eliminar</button>'+
                         '</td>'+
                     '</tr>'
@@ -36,7 +36,7 @@ function consultar() {
 }
 
 function crear(){
-    if($("#name").val()=="" || $("#age").val()=="" || $("#email").val()=="" || $("#password").val()==""){
+    if($("#name").val()=="" || $("#description").val()==""){
         alert("Todos los campos son obligatorios");
     }
     else{
@@ -63,12 +63,11 @@ function crear(){
     } 
 }
 
-function editar(id,name,description){
+function editar(id,name){
     document.getElementById("openEdit").click();
         $("#id").val(""+id+"");
         document.getElementById("id").disabled = true;
         $("#name").val(""+name+"");
-        $("#description").val(""+description+"");
 }
 
 function actualizar(id) {

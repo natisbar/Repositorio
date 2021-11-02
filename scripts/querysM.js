@@ -1,12 +1,12 @@
 // var urlServer = "http://"+window.location.host+"/api/Machine/all";
 var path = "/api/Machine/";
-var locationHost = window.location.host;
+var locationHost = "129.151.112.3";
 var port = ":8080"
 var ssave = "save";
 var sshow = "all";
 var supdate = "update";
 var sdelete = "";
-var urlServerCategory = "http://"+window.location.host+port+"/api/Category/all";
+var urlServerCategory = "http://"+locationHost+port+"/api/Category/all";
 // var urlServer = "http://129.151.112.3:8080/api/Machine/all";
 // var urlServerCategory = "http://129.151.112.3:8080/api/Category/all";
 
