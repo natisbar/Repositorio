@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto G29</title>
+    <link rel="icon" href="image/favicon.png" type="image/png">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/styleModalAcc.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <a href="index.html"><i class="fa fa-fw fa-home"></i> Inicio</a>
+        <a href="cliente.html"><i class="fa fa-fw fa-user"></i> Cliente</a>
+        <a href="maquinaria.html"><i class="fa fa-fw fa-truck"></i> Maquinaria</a>
+        <a href="contacto.html"><i class="fa fa-fw fa-envelope"></i> Contacto</a>
+        <a href="categoria.html"><i class="fa fa-fw fa-folder"></i> Categoría</a>
+        <a href="reportes.html"><i class="fa fa-fw fa-pie-chart"></i> Reportes</a>
+    </div>
+
+        <div class="main">
+            <div class="textogood" align="center">
+                <h1>
+                    Machinery Rent
+                </h1>
+                <img src="image/imagen_header.png" width="50%"> <!--Esta es la imagen de las maquinas-->
+            </div>      
+            <br>
+            <br> 
+
+            <div class="centerDiv">
+                <button style="margin: 10px" class="btn info fa fa-eye" onclick="showTable(1)"> Consultar reservas</button>
+                <button style="margin: 10px" class="btn info fa fa-eye" onclick="showTable(2)"> Estados reservas</button>
+                <button style="margin: 10px" class="btn info fa fa-eye" onclick="showTable(3)"> Top clientes</button>
+
+            </div>
+            <br>
+            <br>
+            <div id="tableConsulta">
+                <div class="centerDiv">
+                    <div class="row" width="50%" >
+                        <div class="col" align="center">
+                            <label for="start" class="form-label">Desde: </label>
+                            <input type="date" class="form-control" id="start" name="trip-start" value="">
+                        </div>
+                        <div class="col" align="center">
+                            <label for="start" class="form-label"> Hasta: </label>
+                            <input type="date" class="form-control" id="finish" name="trip-start" value="">
+                        </div>
+
+                        <div class="row" width="70%" style="margin:10px;">
+                            <div class="col" align="center">
+                                <button type="button" class="btn success" onclick=consultarReservas()>Buscar</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                      
+                </div>
+                <table align="center" style="display: none;" id="dateTable">
+                    <thead>
+                        <tr align="center">
+                            <th>idReservation</th>
+                            <th>startDate</th>
+                            <th>devolutionDate</th>
+                            <th>status</th>
+                            <th>machine</th>
+                            <th>client</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTableConsulta">
+                    </tbody>
+                </table>
+                
+            </div> 
+
+            <div id="tableEstados"  style="display: none;">
+                <table align="center">
+                    <thead>
+                        <tr align="center">
+                            <th>cancelled</th>
+                            <th>completed</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTableEstados">
+                    </tbody>
+                </table>
+            </div> 
+
+            <div id="tableClientes"  style="display: none;">
+                <table align="center">
+                    <thead>
+                        <tr align="center">
+                            <th>Client</th>
+                            <th>TotalReservation</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTableClientes">
+                    </tbody>
+                </table>
+            </div> 
+            
+            <br>
+            <br>
+   
+        </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/micromodal/dist/micromodal.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts/querysR.js"></script>
+    
+    <script>
+        function showTable(number){
+            if(number==1){
+                $("#tableConsulta").show();
+                $("#tableEstados").hide();
+                $("#tableClientes").hide();
+                
+            }
+            else if(number==2){
+                estadosReservas();
+                $("#tableConsulta").hide();
+                $("#tableEstados").show();
+                $("#tableClientes").hide();
+                $("#dateTable").hide();
+            }
+            else if(number==3){
+                topClientes();
+                $("#tableConsulta").hide();
+                $("#tableEstados").hide();
+                $("#tableClientes").show();
+                $("#dateTable").hide();
+            }
+        }
+    </script>
+</body>
+<footer class="text-center footer-style main">
+    <div class="container" >
+        <div class="row">
+            <div class="col-md-4 footer-col" style="width: 100%;" >
+                <h4>Universidad Sergio Arboleda - MisionTIC 2022</h4>
+                <p>©Copyright 2021 Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+</html>
