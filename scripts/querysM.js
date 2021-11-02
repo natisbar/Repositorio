@@ -1,11 +1,17 @@
 // var urlServer = "http://"+window.location.host+"/api/Machine/all";
-// var urlServerCategory = "http://"+window.location.host+"/api/Category/all";
-var urlServer = "http://129.151.112.3/api/Machine/all";
-var urlServerCategory = "http://129.151.112.3/api/Category/all";
+var urlServerCategory = "http://"+window.location.host+"/api/Category/all";
+var path = "/api/Machine/";
+var locationHost = window.location.host;
+var ssave = "save";
+var sshow = "all";
+var supdate = "update";
+var sdelete = "";
+// var urlServer = "http://129.151.112.3:8080/api/Machine/all";
+// var urlServerCategory = "http://129.151.112.3:8080/api/Category/all";
 
 function consultar() {
     $.ajax({
-        url: urlServer,
+        url: "http://"+locationHost+path+sshow,
         type: "GET",
         dataType: "json",
         success: function (response) {
@@ -18,10 +24,10 @@ function consultar() {
                         '<td>'+value.name+'</td>'+
                         '<td>'+value.brand+'</td>'+
                         '<td>'+value.year+'</td>'+
-                        '<td>'+value.description+'</td>'+
                         '<td>'+value.category.name+'</td>'+
+                        '<td>'+value.description+'</td>'+
                         '<td>'+
-                            '<button type="button" class="btn success" onclick=editar('+value.id+')>Editar</button>'+
+                            '<button type="button" class="btn success" onclick=editar('+value.id+',"'+value.name+'","'+value.brand+'",'+value.year+',"'+value.category.id+'")>Editar</button>'+
                             '<button type="button" class="btn danger" onclick=eliminar('+value.id+')>Eliminar</button>'+
                         '</td>'+
                     '</tr>'
@@ -49,7 +55,6 @@ function consultarCategorias(){
 }
 
 function crear(){
-    // let id = $("#id").val();
     if($("#name").val()=="" || $("#brand").val()=="" || $("#year").val()=="" || $("#category").val()=="" || $("#description").val()==""){
         alert("Todos los campos son obligatorios");
     }
@@ -69,7 +74,7 @@ function crear(){
             }
         };
         $.ajax({
-            url: "http://129.151.112.3/api/Machine/save",
+            url: "http://"+locationHost+path+ssave,
             type: "POST",
             dataType: "json",
             data: JSON.stringify(data),
@@ -86,62 +91,77 @@ function crear(){
         });
     } 
 }
-// function modificar(id) {
-//     var id = $("#id").val();
-//     var brand = $("#brand").val();
-//     var model = $("#model").val();
-//     var category_id = $("#category_id").val();
-//     var name = $("#name").val();
-//     var data = {
-//         id: id,
-//         brand: brand,
-//         model: model,
-//         category_id: category_id,
-//         name: name
-//     };
-//     $.ajax({
-//         url: urlOracle,
-//         type: "PUT",
-//         dataType: "json",
-//         data: JSON.stringify(data),
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         success: function (response) {
 
-//         },
-//         statusCode: {
-//             201: function () {
-//                 Limpiar();
-//                 consultar();
-//             },
-//         }
-//     });
-// }
-// function borrar(id) {
-//     id = $("#id").val();
-//     var conf = confirm("Seguro que desea eliminar el resgistro No." + id);
-//     if (conf == true) {
-//         var data = {
-//             id: id
-//         }
-//         $.ajax({
-//             url: urlOracle,
-//             type: "DELETE",
-//             dataType: "json",
-//             data: JSON.stringify(data),
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             statusCode: {
-//                 204: function () {
-//                     consultar();
-//                     Limpiar();
-//                 }
-//             },
-//         });
-//     }
-// }
+function editar(id,name,brand,year,category,description){
+    document.getElementById("openEdit").click();
+        $("#id").val(""+id+"");
+        document.getElementById("id").disabled = true;
+        $("#name").val(""+name+"");
+        $("#brand").val(""+brand+"");
+        $("#year").val(""+year+"");
+        $("#category").val(""+category+"");
+        $("#description").val(""+description+"");
+}
+
+function actualizar(id) {
+    if($("#name").val()=="" || $("#brand").val()=="" || $("#year").val()=="" || $("#category").val()=="" || $("#description").val()==""){
+        alert("Todos los campos son obligatorios");
+    }
+    else{
+        let data = {
+            id: $("#id").val(),
+            name: $("#name").val(),
+            brand: $("#brand").val(),
+            year: $("#year").val(),
+            category:{
+                id: $("#category").val()
+            },
+            description:$("#description").val()
+        }
+
+        $.ajax({
+            url: "http://"+locationHost+path+supdate,
+            type: "PUT",
+            dataType: "json",
+            data: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            },
+            success: function (response) {
+                limpiar();
+                consultar();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("No se Actualizo Correctamente!")
+            }
+        });
+    }
+}
+
+
+function eliminar(id) {
+    var conf = confirm("Seguro que desea eliminar el resgistro No." + id);
+    if (conf == true) {
+        var data = {
+            id: id
+        }
+        $.ajax({
+            url: "http://"+locationHost+path+sdelete+id,
+            type: "DELETE",
+            dataType: "json",
+            data: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            },
+            statusCode: {
+                204: function () {
+                    consultar();
+                }
+            },
+        });
+    }
+}
+
 function limpiar() {
     $("#name").val("");
     $("#brand").val("");

@@ -37,7 +37,7 @@
             <br> 
 
             <div class="centerDiv">
-                <button style="margin: 10px" class="btn success fa fa-window-restore" href='javascript:void(0);' data-custom-open="modal-1"> Crear</button>
+                <button style="margin: 10px" class="btn success fa fa-window-restore" href='javascript:void(0);' data-custom-open="modal-1" id="openEdit"> Crear</button>
                 <button style="margin: 10px" class="btn info fa fa-eye" onclick="showTable()"> Ver maquinas</button>
             </div>
             <br>
@@ -49,8 +49,8 @@
                         <th>name</th>
                         <th>brand</th>
                         <th>year</th>
-                        <th>description</th>
                         <th>category</th>
+                        <th>description</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -109,6 +109,7 @@
                 <!-- <div class="centerDiv" style="display: inline-block;
                 width: 0%;margin: 0;"> -->
                     <button class="modal__btn" style="background-color: #04AA6D" onclick="crear()"> Crear</button>
+                    <button class="modal__btn" style="background-color: #ff9800" onclick="actualizar()"> Actualizar</button>
                     <button class="modal__btn" data-custom-close="modal-1"
                         aria-label="Close this dialog window" id="modalClose">Close</button>
                     <!-- </div> -->
@@ -131,7 +132,7 @@
             openTrigger: 'data-custom-open', // [3]
             closeTrigger: 'data-custom-close', // [4]
             onShow: function(modal) {console.log("micromodal open");},
-            onClose: function(modal) {console.log("micromodal close");}
+            onClose: function(modal) {console.log("micromodal close");document.getElementById("id").disabled = false;$("#id").val("");}
         });
     
         } catch (e) {
