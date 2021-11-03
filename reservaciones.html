@@ -41,17 +41,20 @@
             <br> 
 
             <div class="centerDiv">
-                <button style="margin: 10px" class="btn success fa fa-comment-o" href='javascript:void(0);' data-custom-open="modal-1" id="openEdit"> Dejar mensaje</button>
-                <!-- <button style="margin: 10px" class="btn info fa fa-eye" onclick="showTable()"> Ver maquinas</button> -->
+                <button style="margin: 10px" class="btn success fa fa-window-restore" href='javascript:void(0);' data-custom-open="modal-1" id="openEdit"> Crear</button>
+                <button style="margin: 10px" class="btn info fa fa-eye" onclick="showTable()"> Ver reservas</button>
             </div>
             <br>
             <br> 
-            <table align="center" id="tableMachine">
+            <table align="center" style="display: none;" id="tableReservation">
                 <thead>
                     <tr align="center">
-                        <th>id</th>
-                        <th>messagetext</th>
-                        <!-- <th>amount</th> -->
+                        <th>idReservation</th>
+                        <th>startDate</th>
+                        <th>devolutionDate</th>
+                        <th>status</th>
+                        <th>machine</th>
+                        <th>client</th>
                     </tr>
                 </thead>
                 <tbody id="cuerpoTabla">
@@ -74,14 +77,34 @@
             </header>
             <div class="modal-content-content" id="modal-1-content">
                 <div class="modal__content">
-                    <div class="row" width="70%" style="margin:10px;">
+                    <div class="row" width="70%" >
                         <div class="col" align="center">
-                            <label for="id" class="form-label">ID</label>
-                            <input type="number" class="form-control" id="id" placeholder="0">
+                            <label for="idReservation" class="form-label">idReservation</label>
+                            <input type="number" class="form-control" id="idReservation" placeholder="0">
                         </div>
                         <div class="col" align="center">
-                            <label for="messageText" class="form-label">MESSAGETEXT</label>
-                            <textarea class="form-control" id="messageText" placeholder="messagetext"></textarea>
+                            <label for="startDate" class="form-label">startDate</label>
+                            <input type="date" class="form-control" id="startDate" placeholder="nombre">
+                        </div>
+                        <div class="col" align="center">
+                            <label for="devolutionDate" class="form-label">devolutionDate</label>
+                            <input type="date" class="form-control" id="devolutionDate" placeholder="marca">
+                        </div>
+                        <div class="col" align="center">
+                            <label for="status" class="form-label">status</label>
+                            <input type="text" class="form-control" id="status" placeholder="2012">
+                        </div>
+                    </div>
+                    <div class="row" width="70%" style="margin:10px;">
+                        <div class="col" align="center">
+                            <label for="machine" class="form-label">machine</label>
+                            <select class="form-control" id="machine" placeholder="0">
+                            </select>
+                        </div>
+                        <div class="col" align="center">
+                            <label for="client" class="form-label">client</label>
+                            <select type="text" class="form-control" id="client" placeholder="descripcion">
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -90,7 +113,7 @@
                 <!-- <div class="centerDiv" style="display: inline-block;
                 width: 0%;margin: 0;"> -->
                     <button class="modal__btn" style="background-color: #04AA6D" onclick="crear()"> Crear</button>
-                    <button class="modal__btn" style="background-color: #ff9800"onclick="actualizar()">Modificar</button>
+                    <button class="modal__btn" style="background-color: #ff9800" onclick="actualizar()"> Actualizar</button>
                     <button class="modal__btn" data-custom-close="modal-1"
                         aria-label="Close this dialog window" id="modalClose">Close</button>
                     <!-- </div> -->
@@ -102,7 +125,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/micromodal/dist/micromodal.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts/querysMS.js"></script>
+    <script src="scripts/querysRes.js"></script>
     
     <script>
         try {
@@ -113,7 +136,7 @@
             openTrigger: 'data-custom-open', // [3]
             closeTrigger: 'data-custom-close', // [4]
             onShow: function(modal) {console.log("micromodal open");},
-            onClose: function(modal) {console.log("micromodal close");}
+            onClose: function(modal) {console.log("micromodal close");document.getElementById("idReservation").disabled = false;$("#idReservation").val("");}
         });
     
         } catch (e) {
@@ -121,7 +144,7 @@
         }
 
         function showTable(){
-            $("#tableMachine").show();
+            $("#tableReservation").show();
             
         }
     </script>

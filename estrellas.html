@@ -27,7 +27,7 @@
         <a href="categoria.html"><i class="fa fa-fw fa-folder"></i> Categoría</a>
         <a href="reservaciones.html"><i class="fa fa-fw fa-calendar"></i> Reservación</a>
         <a href="reportes.html"><i class="fa fa-fw fa-pie-chart"></i> Reportes</a>
-        <!-- <a href="estrellas.html"><i class="fa fa-fw fa-star"></i> Estrellas</a> -->
+        <a href="estrellas.html"><i class="fa fa-fw fa-star"></i> Estrellas</a>
     </div>
 
         <div class="main">
@@ -41,17 +41,18 @@
             <br> 
 
             <div class="centerDiv">
-                <button style="margin: 10px" class="btn success fa fa-comment-o" href='javascript:void(0);' data-custom-open="modal-1" id="openEdit"> Dejar mensaje</button>
-                <!-- <button style="margin: 10px" class="btn info fa fa-eye" onclick="showTable()"> Ver maquinas</button> -->
+                <button style="margin: 10px" class="btn success fa fa-window-restore" href='javascript:void(0);' data-custom-open="modal-1" id="openEdit"> Crear</button>
+                <button style="margin: 10px" class="btn info fa fa-eye" onclick="showTable()"> Ver calificaciones</button>
             </div>
             <br>
             <br> 
-            <table align="center" id="tableMachine">
+            <table align="center" style="display: none;" id="tableMachine">
                 <thead>
                     <tr align="center">
-                        <th>id</th>
-                        <th>messagetext</th>
-                        <!-- <th>amount</th> -->
+                        <th>idScore</th>
+                        <th>Reservation</th>
+                        <th>messageText</th>
+                        <th>stars</th>
                     </tr>
                 </thead>
                 <tbody id="cuerpoTabla">
@@ -74,14 +75,25 @@
             </header>
             <div class="modal-content-content" id="modal-1-content">
                 <div class="modal__content">
-                    <div class="row" width="70%" style="margin:10px;">
+                    <div class="row" width="70%" >
                         <div class="col" align="center">
-                            <label for="id" class="form-label">ID</label>
-                            <input type="number" class="form-control" id="id" placeholder="0">
+                            <label for="idScore" class="form-label">idScore</label>
+                            <input type="number" class="form-control" id="idScore" placeholder="0">
                         </div>
                         <div class="col" align="center">
-                            <label for="messageText" class="form-label">MESSAGETEXT</label>
-                            <textarea class="form-control" id="messageText" placeholder="messagetext"></textarea>
+                            <label for="reservation" class="form-label">reservation</label>
+                            <select class="form-control" id="reservation" placeholder="0">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" width="70%" style="margin:10px;">
+                        <div class="col" align="center">
+                            <label for="stars" class="form-label">stars</label>
+                            <input type="number" class="form-control" id="idScore" placeholder="0">
+                        </div>
+                        <div class="col" align="center">
+                            <label for="messageText" class="form-label">messageText</label>
+                            <input type="text" class="form-control" id="messageText" placeholder="2012">
                         </div>
                     </div>
                 </div>
@@ -90,7 +102,7 @@
                 <!-- <div class="centerDiv" style="display: inline-block;
                 width: 0%;margin: 0;"> -->
                     <button class="modal__btn" style="background-color: #04AA6D" onclick="crear()"> Crear</button>
-                    <button class="modal__btn" style="background-color: #ff9800"onclick="actualizar()">Modificar</button>
+                    <button class="modal__btn" style="background-color: #ff9800" onclick="actualizar()"> Actualizar</button>
                     <button class="modal__btn" data-custom-close="modal-1"
                         aria-label="Close this dialog window" id="modalClose">Close</button>
                     <!-- </div> -->
@@ -102,7 +114,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/micromodal/dist/micromodal.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts/querysMS.js"></script>
+    <script src="scripts/querysEst.js"></script>
     
     <script>
         try {
@@ -113,7 +125,7 @@
             openTrigger: 'data-custom-open', // [3]
             closeTrigger: 'data-custom-close', // [4]
             onShow: function(modal) {console.log("micromodal open");},
-            onClose: function(modal) {console.log("micromodal close");}
+            onClose: function(modal) {console.log("micromodal close");document.getElementById("idScore").disabled = false;$("#idScore").val("");}
         });
     
         } catch (e) {
